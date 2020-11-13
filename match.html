@@ -16,7 +16,7 @@
     <!-- Navigasi -->
     <nav class="blue-grey darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a href="./index.html" class="brand-logo" id="logo-container">Football Teams</a>
+            <a href="./index.html" class="brand-logo" id="logo-container">Detail</a>
             <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
                 <i class="material-icons">arrow_back</i>
             </a>
@@ -24,6 +24,7 @@
             <ul class="sidenav" id="nav-mobile"></ul>
         </div>
     </nav>
+    <!-- Akhir Navigasi -->
 
     <div class="container" id="body-content"></div>
 
@@ -41,6 +42,7 @@
     <script src="js/db.js"></script>
 
     <script>
+        // REGISTER SERVICE WORKER
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function() {
                 navigator.serviceWorker
@@ -62,17 +64,19 @@
             var save = document.getElementById("save");
 
             if (isFromSaved) {
+                // Hide fab jika dimuat dari indexed db
                 save.style.display = 'none';
-
+                console.log(urlParams)
+                    // ambil artikel lalu tampilkan
                 getSavedArticleById();
             } else {
-                var item = getArticleById();
+                var item = getMatch();
             }
 
             save.onclick = function() {
                 console.log("Tombol FAB di klik.");
                 item.then(function(article) {
-                    saveForLater(article);
+                    saveMatch(article);
                 });
             };
         });
